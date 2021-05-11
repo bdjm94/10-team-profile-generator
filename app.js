@@ -95,27 +95,27 @@ const managerQs = () => {
     
             {
                 type: 'input',
-                message: 'What is the engineers name?',
+                message: 'What is the name of the Engineer?',
                 name: 'engineerName'
             },
             {
                 type: 'input',
-                message: 'What is engineers employee id?',
+                message: 'What is the Engineers ID number?',
                 name: 'id',
             },
             {
                 type: 'input',
-                message: 'What is the engineers email?',
+                message: 'What is the Engineers email?',
                 name: 'email',
             },
             {
                 type: 'input',
-                message: 'What is the engineers github username?',
+                message: 'What is the Engineers github username?',
                 name: 'github',
             },
             {
                 type: 'confirm',
-                message: 'Do you need to enter another employee?',
+                message: 'Would you like to add another employee?',
                 name: 'addCheck',
             },
     
@@ -133,6 +133,54 @@ const managerQs = () => {
                     fs.writeFile(outputPath, data, (err) => {
                         if (err) throw err;
                         console.log('Success! Engineers details have been saved!!');
+                    });
+                }
+            })
+    }
+
+    const internQs = () => {
+        inquirer.prompt([
+    
+            {
+                type: 'input',
+                message: 'What is the interns name?',
+                name: 'internName'
+            },
+            {
+                type: 'input',
+                message: 'What is the interns employee id?',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'What is the interns email?',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'What is the interns school?',
+                name: 'school',
+            },
+            {
+                type: 'confirm',
+                message: 'Do you need to enter another employee?',
+                name: 'addCheck',
+            },
+    
+        ])
+            .then(answers => {
+                const intern = new Intern(answers.internName, answers.id, answers.email, answers.school);
+                employees.push(intern);
+    
+                console.log(employees);
+    
+                if (answers.addCheck) {
+                    employeeQs();
+                } else {
+                    let data = render(employees);
+                    fs.writeFile(outputPath, data, (err) => {
+                        if (err) throw err;
+                        console.log('The file has been saved!');
                     });
                 }
             })
