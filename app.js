@@ -79,10 +79,61 @@ const managerQs = () => {
             console.log(employees);
 
             if (answers.addCheck) {
-                initialQuestion();
+                employeeQs();
             } else {
                 let data = render(employees);
                 fs.writeFile(outputPath, data, (err) => {
                     if (err) throw err;
-                    console.log('Success! Managers file has been saved!');
+                    console.log('Success! Managers details have been saved!');
                 });
+            }
+        })
+    }
+
+    const engineerQs = () => {
+        inquirer.prompt([
+    
+            {
+                type: 'input',
+                message: 'What is the engineers name?',
+                name: 'engineerName'
+            },
+            {
+                type: 'input',
+                message: 'What is engineers employee id?',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'What is the engineers email?',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'What is the engineers github username?',
+                name: 'github',
+            },
+            {
+                type: 'confirm',
+                message: 'Do you need to enter another employee?',
+                name: 'addCheck',
+            },
+    
+        ])
+            .then(answers => {
+                const engineer = new Engineer(answers.engineerName, answers.id, answers.email, answers.github);
+                employees.push(engineer);
+    
+                console.log(employees);
+    
+                if (answers.addCheck) {
+                    employeeQs();
+                } else {
+                    let data = render(employees);
+                    fs.writeFile(outputPath, data, (err) => {
+                        if (err) throw err;
+                        console.log('Success! Engineers details have been saved!!');
+                    });
+                }
+            })
+    }
