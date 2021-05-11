@@ -110,7 +110,7 @@ const managerQs = () => {
                 let data = render(employees);
                 fs.writeFile(outputPath, data, (err) => {
                     if (err) throw err;
-                    console.log('Success! Managers details have been saved!');
+                    console.log('Success! All details have been saved. Check Output for your team profile!');
                 });
             }
         })
@@ -162,7 +162,7 @@ const managerQs = () => {
                     let data = render(employees);
                     fs.writeFile(outputPath, data, (err) => {
                         if (err) throw err;
-                        console.log('Success! Engineers details have been saved!');
+                        console.log('Success! All details have been saved. Check Output for your team profile!');
                     });
                 }
             })
@@ -214,7 +214,7 @@ const managerQs = () => {
                     let data = render(employees);
                     fs.writeFile(outputPath, data, (err) => {
                         if (err) throw err;
-                        console.log('Success! Interns details have been saved!!');
+                        console.log('Success! All details have been saved. Check Output for your team profile!');
                     });
                 }
             })
