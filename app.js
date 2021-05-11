@@ -39,4 +39,4 @@ const employeeQs = () => {
         })
 }
 
-employeeQsS();
+employeeQs();
