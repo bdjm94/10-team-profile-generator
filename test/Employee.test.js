@@ -1,4 +1,4 @@
-const Employee = require('../lib/employee');
+const Employee = require('../lib/Employee');
 
 describe("Employee Test Sequence", () => {
     it('Can set name via constructor arguements', () => {
