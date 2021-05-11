@@ -12,6 +12,23 @@ const render = require("./lib/htmlRenderer");
 
 let employees = [];
 
+const validInput = (answer) => {
+    if (answer === "") {
+      return "This field cannot be empty";
+    }
+    return true;
+  };
+  
+  const validEmail = function (email) {
+    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+  
+    if (valid) {
+      return true;
+    } else {
+      return "Please enter a valid email";
+    }
+  };
+
 const employeeQs = () => {
     inquirer.prompt([
         {
@@ -47,22 +64,31 @@ const managerQs = () => {
         {
             type: 'input',
             message: 'What is the name of the Manager?',
-            name: 'managerName'
+            name: 'managerName',
+            validate: validInput,
         },
         {
             type: 'input',
             message: 'What is the Managers ID number?',
             name: 'id',
+            validate: validInput,
         },
         {
             type: 'input',
             message: 'What is the Managers email?',
             name: 'email',
+            validate: validEmail,
         },
         {
             type: 'input',
             message: 'What is the Managers office number?',
             name: 'officeNumber',
+            validate: function (answer) {
+                if (isNaN(answer)) {
+                  return "Please enter a number";
+                }
+                return true;
+              },
         },
         {
             type: 'confirm',
@@ -96,22 +122,26 @@ const managerQs = () => {
             {
                 type: 'input',
                 message: 'What is the name of the Engineer?',
-                name: 'engineerName'
+                name: 'engineerName',
+                validate: validInput,
             },
             {
                 type: 'input',
                 message: 'What is the Engineers ID number?',
                 name: 'id',
+                validate: validInput,
             },
             {
                 type: 'input',
                 message: 'What is the Engineers email?',
                 name: 'email',
+                validate: validEmail,
             },
             {
                 type: 'input',
-                message: 'What is the Engineers github username?',
+                message: 'What is the Engineers GitHub username?',
                 name: 'github',
+                validate: validInput,
             },
             {
                 type: 'confirm',
@@ -132,7 +162,7 @@ const managerQs = () => {
                     let data = render(employees);
                     fs.writeFile(outputPath, data, (err) => {
                         if (err) throw err;
-                        console.log('Success! Engineers details have been saved!!');
+                        console.log('Success! Engineers details have been saved!');
                     });
                 }
             })
@@ -144,22 +174,26 @@ const managerQs = () => {
             {
                 type: 'input',
                 message: 'What is the name of the Intern?',
-                name: 'internName'
+                name: 'internName',
+                validate: validInput,
             },
             {
                 type: 'input',
                 message: 'What is the Interns ID number?',
                 name: 'id',
+                validate: validInput,
             },
             {
                 type: 'input',
                 message: 'What is the Interns email?',
                 name: 'email',
+                validate: validEmail,
             },
             {
                 type: 'input',
                 message: 'What school does the Intern currently attend?',
                 name: 'school',
+                validate: validInput,
             },
             {
                 type: 'confirm',
@@ -180,7 +214,7 @@ const managerQs = () => {
                     let data = render(employees);
                     fs.writeFile(outputPath, data, (err) => {
                         if (err) throw err;
-                        console.log('The file has been saved!');
+                        console.log('Success! Interns details have been saved!!');
                     });
                 }
             })
