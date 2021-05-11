@@ -143,27 +143,27 @@ const managerQs = () => {
     
             {
                 type: 'input',
-                message: 'What is the interns name?',
+                message: 'What is the name of the Intern?',
                 name: 'internName'
             },
             {
                 type: 'input',
-                message: 'What is the interns employee id?',
+                message: 'What is the Interns ID number?',
                 name: 'id',
             },
             {
                 type: 'input',
-                message: 'What is the interns email?',
+                message: 'What is the Interns email?',
                 name: 'email',
             },
             {
                 type: 'input',
-                message: 'What is the interns school?',
+                message: 'What school does the Intern currently attend?',
                 name: 'school',
             },
             {
                 type: 'confirm',
-                message: 'Do you need to enter another employee?',
+                message: 'Would you like to add another employee?',
                 name: 'addCheck',
             },
     
